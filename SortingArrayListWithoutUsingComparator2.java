@@ -1,0 +1,77 @@
+import java.util.*;
+class SortingArrayListWithoutUsingComparator2
+{  
+    static void display(ArrayList<Student>list)
+    {
+        System.out.println("\nRollno\tName\tbranch\tcgpa");
+        for(Student s:list)
+        {
+            System.out.println(s.rollno+"\t"+s.Sname+"\t"+s.Sbranch+"\t"+s.cgpa);
+        }
+    }
+     public static void main(String arg[])
+    {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("Enter no.of records..");
+    int n=sc.nextInt();
+    ArrayList<Student> list=new ArrayList<>();
+    for(int i=0;i<n;i++)
+    {
+        int roll=sc.nextInt();
+        String name=sc.next();
+        String branch=sc.next();
+        double cgpa=sc.nextDouble();
+        list.add(new Student (roll,name,branch,cgpa));
+    }
+    while(true)
+    {
+        System.out.println("Enter your choice");
+        int ch=sc.nextInt();
+        System.out.println("1. Roll No");
+        System.out.println("2. Name");
+        System.out.println("3. Branch");
+        System.out.println("4. CGPA");
+        switch (ch) {
+            case 1:
+                
+                 Collections.sort(list, (s1,s2)->s2.rollno-s1.rollno);
+                display(list);
+                break; 
+            case 2:
+                Collections.sort(list,(s1,s2)->s2.Sname.compareTo(s1.Sname));
+                 display(list);
+
+                break;
+
+            case 3:
+                Collections.sort(list, (s1,s2)->s2.Sbranch.compareTo(s1.Sbranch));
+                display(list);
+
+                break;
+
+            case 4:
+                Collections.sort(list, (s1,s2)->Double.compare(s2.cgpa,s1.cgpa));
+               display(list);
+
+                break;
+            default:
+                System.out.println("Exitting..");
+		System.exit(0);
+                
+        }
+    }
+    }
+}
+class Student
+{
+    int rollno;
+    String Sname,Sbranch;
+    double cgpa;
+    public Student(int rno,String name,String br,double cgpa1)
+    {
+        rollno=rno;
+        Sname=name;
+        Sbranch=br;
+        cgpa=cgpa1;
+    }
+}
